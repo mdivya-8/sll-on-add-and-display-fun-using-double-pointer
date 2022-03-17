@@ -1,0 +1,53 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct node
+{
+    int data;
+    struct node *link;
+};
+void add(struct node **, int);
+void display(struct node  **);
+void main()
+{
+    struct node *p=NULL;
+    add(&p,20);
+    add(&p,30);
+    add(&p,40);
+    display(&p);
+    return;
+}
+void add(struct node **q,int n)
+{
+    struct node *temp,*r;
+    temp=*q;
+    if(temp==NULL)
+    {
+        temp=(struct node*)malloc(sizeof(struct node));
+        temp->data=n;
+        temp->link=NULL;
+        *q=temp;
+    }
+    else
+    {
+        while(temp->link!=NULL)
+        temp=temp->link;
+        r=(struct node*)malloc(sizeof(struct node));
+        r->data=n;
+        r->link=NULL;
+        temp->link=r;
+    }
+    return;
+}
+    void display(struct node **q)
+    {
+        struct node *temp;
+        temp=*q;
+        while(temp!=NULL)
+        {
+            printf("\n %u %d %u",temp,temp->data,temp->link);
+            temp=temp->link;
+        }
+        return;
+    }
+
+
